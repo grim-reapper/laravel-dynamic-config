@@ -1,6 +1,6 @@
 {
     "name": "imran/laravel-dynamic-config",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Dynamic runtime configuration system for Laravel applications.",
     "type": "library",
     "require": {
