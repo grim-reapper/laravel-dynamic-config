@@ -9,6 +9,7 @@
         "illuminate/config": "^10.0|^11.0|^12.0|^13.0",
         "illuminate/console": "^10.0|^11.0|^12.0|^13.0",
         "illuminate/database": "^10.0|^11.0|^12.0|^13.0",
+        "illuminate/http": "^10.0|^11.0|^12.0|^13.0",
         "symfony/yaml": "^6.0|^7.0"
     },
     "require-dev": {

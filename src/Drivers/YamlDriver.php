@@ -3,6 +3,8 @@
 namespace Imran\DynamicConfig\Drivers;
 
 use Imran\DynamicConfig\Contracts\ConfigDriver;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
 class YamlDriver implements ConfigDriver
@@ -15,11 +17,12 @@ class YamlDriver implements ConfigDriver
             return [];
         }
 
-        if (!class_exists(Yaml::class)) {
-            throw new \RuntimeException('Symfony YAML component is required to parse YAML files. Run "composer require symfony/yaml".');
+        try {
+            $parsed = Yaml::parseFile($path);
+        } catch (ParseException $e) {
+            Log::warning("[dynamic-config] YamlDriver failed to parse [{$path}]: " . $e->getMessage());
+            return [];
         }
-
-        $parsed = Yaml::parseFile($path);
 
         return is_array($parsed) ? $parsed : [];
     }

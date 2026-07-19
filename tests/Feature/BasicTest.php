@@ -4,6 +4,7 @@ namespace Imran\DynamicConfig\Tests\Feature;
 
 use Imran\DynamicConfig\Tests\TestCase;
 use Imran\DynamicConfig\ConfigManager;
+use Imran\DynamicConfig\Cache\ConfigCache;
 
 class BasicTest extends TestCase
 {
@@ -26,7 +27,8 @@ class BasicTest extends TestCase
 
         $this->assertFileExists(__DIR__.'/../temp/dynamic_config.php');
 
-        $cached = require __DIR__.'/../temp/dynamic_config.php';
+        $cache = new ConfigCache(__DIR__.'/../temp/dynamic_config.php');
+        $cached = $cache->load();
         $this->assertEquals('Yaml App', $cached['app']['name']);
     }
 
